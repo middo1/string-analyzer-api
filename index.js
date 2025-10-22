@@ -44,7 +44,7 @@ app.post("/strings", (req, res) => {
   const id = properties.sha_256_hash;
 
   if (strDB.has(id)) {
-    return res.status(408).json({ error: "String already exists" });
+    return res.status(409).json({ error: "String already exists" });
   }
 
   const record = {
@@ -55,7 +55,7 @@ app.post("/strings", (req, res) => {
   };
 
   strDB.set(id, record);
-  return res.status(200).json(record)
+  return res.status(201).json(record)
 });
 
 app.get("/strings/:value", (req, res) => {
